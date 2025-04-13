@@ -15,7 +15,7 @@ description: "some cs, some others"
 avatar: https://github.com/QMEOWQ/QMEOWQ.github.io/blob/master/images/mario%20(1).png?raw=true
 #https://github.com/qmeowq/images/raw/master/gzh/%E6%96%87%E6%9C%AB%E6%8E%A8%E5%B9%BF%E6%96%87%E6%A1%88.png
 # 你的favicon（出现在浏览器tab上）图片URL，建议使用较小(64px × 64px)的图片
-favicon: https://raw.githubusercontent.com/QMEOWQ/QMEOWQ.github.io/master/images/reddit%20(2).ico
+favicon: https://raw.githubusercontent.com/QMEOWQ/qmeowq.github.io/master/images/reddit%20(2).ico
 
 # Tabs in header. There are 'Blog', 'About', 'Archive', 'Tags'
 # and URL Link(e.g. 'Theme' tab below) tabs. If you don't need one, just delete

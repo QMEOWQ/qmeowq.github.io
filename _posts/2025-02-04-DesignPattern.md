@@ -1,3 +1,5 @@
+[toc]
+
 ## 设计模式
 
 设计原则：单一职责原则、开放封闭原则、里氏替换原则、最少知识原则、接口隔离原则、依赖倒置原则。
@@ -71,7 +73,7 @@
 
 #### 工厂可以根据参数的不同返回不同的产品
 
-#### 1. 组成
+##### 组成
 
 - Factory(工厂)：核心部分，负责实现创建所有产品的内部逻辑，工厂类可以被外界直接调用，创建所需对象
   工厂类是整个模式的关键.包含了必要的逻辑判断,根据外界给定的信息,决定究竟应该创建哪个具体类的对象.通过使用工厂类,外界可以从直接创建具体产品对象的尴尬局面摆脱出来,仅仅需要负责“消费”对象就可以了
@@ -80,132 +82,132 @@
 
 - ProductA、ProductB…(具体产品)：简单工厂模式的创建目标，所有被创建的对象都是某个具体类的实例。它要实现抽象产品中声明的抽象方法
 
-```c++
-#include <bits/stdc++.h>
+    ```c++
+    #include <bits/stdc++.h>
 
-using namespace std;
+    using namespace std;
 
-// 以披萨为例，创建披萨的工厂类
-// 假设有三种披萨，分别为：奶酪披萨、香肠披萨、海鲜披萨
-class Pizza
-{
-public:
-    virtual void prepare() = 0;
-    virtual void bake() = 0;
-    virtual void cut() = 0;
-    virtual void box() = 0;
-    virtual ~Pizza() {}
-};
+    // 以披萨为例，创建披萨的工厂类
+    // 假设有三种披萨，分别为：奶酪披萨、香肠披萨、海鲜披萨
+    class Pizza
+    {
+    public:
+        virtual void prepare() = 0;
+        virtual void bake() = 0;
+        virtual void cut() = 0;
+        virtual void box() = 0;
+        virtual ~Pizza() {}
+    };
 
-class CheesePizza : public Pizza
-{
-public:
-    void prepare() override
+    class CheesePizza : public Pizza
     {
-        cout << "Prepare cheese pizza" << endl;
-    }
-    void bake() override
-    {
-        cout << "Bake cheese pizza" << endl;
-    }
-    void cut() override
-    {
-        cout << "Cut cheese pizza" << endl;
-    }
-    void box() override
-    {
-        cout << "Box cheese pizza" << endl;
-    }
-};
-
-class PepperoniPizza : public Pizza
-{
-public:
-    void prepare() override
-    {
-        cout << "Prepare pepperoni pizza" << endl;
-    }
-    void bake() override
-    {
-        cout << "Bake pepperoni pizza" << endl;
-    }
-    void cut() override
-    {
-        cout << "Cut pepperoni pizza" << endl;
-    }
-    void box() override
-    {
-        cout << "Box pepperoni pizza" << endl;
-    }
-};
-
-class SeafoodPizza : public Pizza
-{
-public:
-    void prepare() override
-    {
-        cout << "Prepare seafood pizza" << endl;
-    }
-    void bake() override
-    {
-        cout << "Bake seafood pizza" << endl;
-    }
-    void cut() override
-    {
-        cout << "Cut seafood pizza" << endl;
-    }
-    void box() override
-    {
-        cout << "Box seafood pizza" << endl;
-    }
-};
-
-class PizzaFactory
-{
-public:
-    static Pizza *createPizza(const string &type)
-    {
-        if (type == "cheese")
+    public:
+        void prepare() override
         {
-            return new CheesePizza();
+            cout << "Prepare cheese pizza" << endl;
         }
-        else if (type == "pepperoni")
+        void bake() override
         {
-            return new PepperoniPizza();
+            cout << "Bake cheese pizza" << endl;
         }
-        else if (type == "seafood")
+        void cut() override
         {
-            return new SeafoodPizza();
+            cout << "Cut cheese pizza" << endl;
         }
-        else
+        void box() override
         {
-            cout << "Unknown pizza type" << endl;
-            return nullptr;
+            cout << "Box cheese pizza" << endl;
         }
-    }
-};
+    };
 
-int main()
-{
-    string pizzaType;
-    cout << "Enter pizza type (cheese/pepperoni/seafood): ";
-    cin >> pizzaType;
-
-    Pizza *pizza = PizzaFactory::createPizza(pizzaType);
-    if (pizza != nullptr)
+    class PepperoniPizza : public Pizza
     {
-        pizza->prepare();
-        pizza->bake();
-        pizza->cut();
-        pizza->box();
-        delete pizza;
+    public:
+        void prepare() override
+        {
+            cout << "Prepare pepperoni pizza" << endl;
+        }
+        void bake() override
+        {
+            cout << "Bake pepperoni pizza" << endl;
+        }
+        void cut() override
+        {
+            cout << "Cut pepperoni pizza" << endl;
+        }
+        void box() override
+        {
+            cout << "Box pepperoni pizza" << endl;
+        }
+    };
+
+    class SeafoodPizza : public Pizza
+    {
+    public:
+        void prepare() override
+        {
+            cout << "Prepare seafood pizza" << endl;
+        }
+        void bake() override
+        {
+            cout << "Bake seafood pizza" << endl;
+        }
+        void cut() override
+        {
+            cout << "Cut seafood pizza" << endl;
+        }
+        void box() override
+        {
+            cout << "Box seafood pizza" << endl;
+        }
+    };
+
+    class PizzaFactory
+    {
+    public:
+        static Pizza *createPizza(const string &type)
+        {
+            if (type == "cheese")
+            {
+                return new CheesePizza();
+            }
+            else if (type == "pepperoni")
+            {
+                return new PepperoniPizza();
+            }
+            else if (type == "seafood")
+            {
+                return new SeafoodPizza();
+            }
+            else
+            {
+                cout << "Unknown pizza type" << endl;
+                return nullptr;
+            }
+        }
+    };
+
+    int main()
+    {
+        string pizzaType;
+        cout << "Enter pizza type (cheese/pepperoni/seafood): ";
+        cin >> pizzaType;
+
+        Pizza *pizza = PizzaFactory::createPizza(pizzaType);
+        if (pizza != nullptr)
+        {
+            pizza->prepare();
+            pizza->bake();
+            pizza->cut();
+            pizza->box();
+            delete pizza;
+        }
+
+        return 0;
     }
+    ```
 
-    return 0;
-}
-```
-
-#### 缺点
+##### 缺点
 
 - 违反开放-封闭原则（OCP）： 当需要新增一种产品时，需要修改工厂类的源代码来添加新的产品类型，这违反了开放-封闭原则。每次修改都会导致工厂类的变化，可能引发其他代码的修改和重新测试，增加了维护成本和风险。
 
