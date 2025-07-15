@@ -13,6 +13,8 @@ permalink: /database-project-review/
 
 [项目地址](https://github.com/QMEOWQ/db_by_golang.git)
 
+<!-- more -->
+
 ## 整体架构
 
 > **注意**: 如果您的 markdown 查看器不支持 mermaid 图表渲染，建议使用以下工具：

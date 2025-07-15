@@ -13,6 +13,8 @@ permalink: /compiler-project-review/
 
 [项目地址](https://github.com/QMEOWQ/compiler_by_golang.git)
 
+<!-- more -->
+
 ## 📊 架构图表索引
 
 本文档包含以下可视化图表，帮助理解项目架构：
@@ -830,51 +832,45 @@ graph TD
 技术栈与设计模式
 
 ```mermaid
-mindmap
-  root((编译器技术栈))
-    编程语言
-      Go 1.17
-      模块化设计
-      接口抽象
+graph TB
+    subgraph "编程语言"
+        A[Go 1.17]
+        B[模块化设计]
+        C[接口抽象]
+    end
 
-    设计模式
-      访问者模式
-        Gen()方法
-        Reduce()方法
-      组合模式
-        AST节点层次
-        表达式嵌套
-      策略模式
-        不同节点类型
-        代码生成策略
+    subgraph "设计模式"
+        D[访问者模式<br/>Gen方法<br/>Reduce方法]
+        E[组合模式<br/>AST节点层次<br/>表达式嵌套]
+        F[策略模式<br/>不同节点类型<br/>代码生成策略]
+    end
 
-    核心算法
-      递归下降解析
-        LL(1)语法
-        左递归消除
-      符号表管理
-        链式环境
-        作用域嵌套
-      类型系统
-        类型提升
-        兼容性检查
+    subgraph "核心算法"
+        G[递归下降解析<br/>LL1语法<br/>左递归消除]
+        H[符号表管理<br/>链式环境<br/>作用域嵌套]
+        I[类型系统<br/>类型提升<br/>兼容性检查]
+    end
 
-    数据结构
-      Token栈
-        支持回退
-        词法分析
-      AST树
-        节点继承
-        接口统一
-      符号表
-        哈希表
-        链式查找
+    subgraph "数据结构"
+        J[Token栈<br/>支持回退<br/>词法分析]
+        K[AST树<br/>节点继承<br/>接口统一]
+        L[符号表<br/>哈希表<br/>链式查找]
+    end
 
-    输出格式
-      三地址码
-        临时变量
-        标签跳转
-      中间表示
-        平台无关
-        优化友好
+    subgraph "输出格式"
+        M[三地址码<br/>临时变量<br/>标签跳转]
+        N[中间表示<br/>平台无关<br/>优化友好]
+    end
+
+    A --> D
+    B --> E
+    C --> F
+    D --> G
+    E --> H
+    F --> I
+    G --> J
+    H --> K
+    I --> L
+    J --> M
+    K --> N
 ```

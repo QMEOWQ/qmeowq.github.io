@@ -13,6 +13,8 @@ permalink: /os-kernel-project-architecture/
 
 [项目地址](https://github.com/QMEOWQ/os_kernel_by_rust.git)
 
+<!-- more -->
+
 ## 核心特性
 
 - ✅ **内存管理**: 分页机制、物理内存分配、堆内存管理
@@ -311,11 +313,11 @@ graph LR
 
 ```mermaid
 graph TD
-    A[小对象 <2KB] --> B[FixedSizeBlockAllocator]
+    A["小对象 < 2KB"] --> B[FixedSizeBlockAllocator]
     B --> C[预分配块]
     C --> D[O1分配/释放]
 
-    E[大对象 >=2KB] --> F[LinkedListAllocator]
+    E["大对象 >= 2KB"] --> F[LinkedListAllocator]
     F --> G[首次适应算法]
     G --> H[减少碎片]
 
