@@ -1,3 +1,10 @@
+---
+layout: post
+title: OS by Rust - 项目架构文档
+date: 2025-07-14
+toc: true
+---
+
 # OS by Rust - 项目架构文档
 
 ## 项目概述

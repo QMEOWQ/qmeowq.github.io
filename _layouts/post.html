@@ -24,7 +24,13 @@ layout: default
 
   
 
-  <div class="entry">
+  {% if page.toc %}
+  <div class="toc">
+    {% include toc.html html=content sanitize=true class="inline_toc" id="my_toc" h_min=2 h_max=4 %}
+  </div>
+  {% endif %}
+
+  <div class="entry{% if page.toc %} withtoc{% endif %}">
     {{ content }}
   </div>
 
