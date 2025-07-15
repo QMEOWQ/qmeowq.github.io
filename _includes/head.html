@@ -25,20 +25,34 @@
  <!--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"> -->
   <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
   
-  <!-- Mermaid支持 -->
+  <!-- Mermaid支持 - Client-side implementation for GitHub Pages -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
   <script>
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: 'default',
-      themeVariables: {
-        primaryColor: '#ff6b6b',
-        primaryTextColor: '#333',
-        primaryBorderColor: '#ff6b6b',
-        lineColor: '#333',
-        secondaryColor: '#4ecdc4',
-        tertiaryColor: '#ffe66d'
-      }
+    document.addEventListener("DOMContentLoaded", function() {
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'default',
+        themeVariables: {
+          primaryColor: '#ff6b6b',
+          primaryTextColor: '#333',
+          primaryBorderColor: '#ff6b6b',
+          lineColor: '#333',
+          secondaryColor: '#4ecdc4',
+          tertiaryColor: '#ffe66d'
+        }
+      });
+
+      // Find all pre code blocks with class 'language-mermaid' or just 'mermaid'
+      document.querySelectorAll('pre code.language-mermaid, pre.mermaid code, div.mermaid').forEach(function(el) {
+        // Create a div with class mermaid
+        var div = document.createElement('div');
+        div.className = 'mermaid';
+        div.innerHTML = el.textContent;
+
+        // Replace the pre element with the div
+        var pre = el.parentNode;
+        pre.parentNode.replaceChild(div, pre);
+      });
     });
   </script>
   

@@ -1,0 +1,29 @@
+---
+layout: default
+---
+
+<article class="post detailed">
+  <h1>{{ page.title }}</h1>
+
+  <div class="entry">
+    {{ content }}
+  </div>
+
+  <div class="date">
+    Written on {{ page.date | date: "%B %e, %Y" }}
+  </div>
+
+  {% include disqus.html %}
+</article>
+
+<script>
+  // Re-process mermaid diagrams after page load
+  document.addEventListener("DOMContentLoaded", function() {
+    // Force re-render of mermaid diagrams
+    setTimeout(function() {
+      if (typeof mermaid !== 'undefined') {
+        mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+      }
+    }, 250);
+  });
+</script>

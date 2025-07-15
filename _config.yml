@@ -112,10 +112,8 @@ plugins:
   - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
   - jekyll-paginate
   - jekyll-toc # Create a Table of Contents for posts using the official Jekyll toc gem
-  - jekyll-mermaid
-
-# support mermaid
-mermaid: true
+  # Note: jekyll-mermaid is not supported by GitHub Pages
+  # Using client-side JavaScript solution instead
 
 # Exclude these files from your production _site
 exclude:

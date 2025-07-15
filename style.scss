@@ -1,13 +1,17 @@
 ---
 ---
 
-//
-// IMPORTS
-//
+/*
+ * SCSS IMPORTS
+ * These imports are processed by Jekyll's SCSS processor
+ */
 
 @import "reset";
 @import "open-color";
 @import "variables";
+@import "gitalk";
+
+/* 开始样式定义 */
 
 // Syntax highlighting @import is at the bottom of this file
 
@@ -248,6 +252,7 @@ a.footnote {
     border-radius: 2px;
     -webkit-text-stroke: 0.25px;
     -webkit-transition: 0.2s ease-out all;
+    transition: 0.2s ease-out all;
     text-decoration: none;
 
     &:hover {
@@ -736,6 +741,33 @@ footer {
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "highlights";
-@import "gitalk";
+
+/**************/
+/* MERMAID DIAGRAMS */
+/**************/
+
+.mermaid {
+  text-align: center;
+  margin: 20px 0;
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  padding: 16px;
+  overflow-x: auto;
+
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+// Dark mode support for mermaid
+@media (prefers-color-scheme: dark) {
+  .mermaid {
+    background: #0d1117;
+    border-color: #30363d;
+    color: #c9d1d9;
+  }
+}
 
 
