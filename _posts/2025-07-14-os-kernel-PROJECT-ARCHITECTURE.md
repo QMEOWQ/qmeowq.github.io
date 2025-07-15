@@ -2,7 +2,7 @@
 layout: post
 title: OS by Rust - 项目架构文档
 date: 2025-07-14
-toc: true
+permalink: /os-kernel-project-architecture/
 ---
 
 # OS by Rust - 项目架构文档

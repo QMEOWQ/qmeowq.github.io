@@ -2,7 +2,7 @@
 layout: post
 title: 编译器项目架构与运行流程分析
 date: 2025-07-14
-toc: true
+permalink: /compiler-project-review/
 ---
 
 # 编译器项目架构与运行流程分析

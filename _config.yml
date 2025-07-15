@@ -65,9 +65,9 @@ disqus: # fromendworld
 # Gitalk
 gitalk:
   clientID: 19133956da3a0161b15e
-  clientSecret: 37ff74738df8106936b2e302283fd8dc23c33872
+  clientSecret: 6af4d4e5e8fb6e939c3a1e9a884111e90dec0c5c
   repo: qmeowq.github.io
-  owner: qmeowq
+  owner: QMEOWQ
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
 google_analytics: G-FK56BGDKRC

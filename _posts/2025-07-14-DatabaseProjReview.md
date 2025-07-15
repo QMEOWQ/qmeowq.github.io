@@ -2,7 +2,7 @@
 layout: post
 title: Go 语言数据库系统架构分析文档
 date: 2025-07-14
-toc: true
+permalink: /database-project-review/
 ---
 
 # Go 语言数据库系统架构分析文档
