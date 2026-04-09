@@ -18,23 +18,6 @@ layout: default
   <ul id="results-container"></ul>
 </div>
 
-<div class="date-search-container">
-  <input
-    type="text"
-    id="date-search-input"
-    placeholder="按标题或内容搜索并按年份分组..."
-    style="width: 90%; height: 35px; color: #333;
-           background-color: rgba(227,231,236,.2);
-           line-height: 35px; padding: 0 16px;
-           border: 1px solid #c0c0c0; font-size: 16px;
-           font-weight: bold; border-radius: 17px;
-           outline: none; box-sizing: border-box;
-           box-shadow: inset 0 1px 1px rgba(0,0,0,.075),
-                       0 0 8px rgba(102,175,233,.6);"
-  />
-  <div id="date-search-results"></div>
-</div>
-
 <!--script src="https://unpkg.com/simple-jekyll-search/dest/simple-jekyll-search.min.js"></script-->
 <script src="{{ site.baseurl }}/js/simple-jekyll-search.min.js"></script>
 
@@ -49,98 +32,6 @@ layout: default
 	fuzzy: false,
 	exclude: ['Welcome']
   })
-</script>
-
-<script>
-  (function () {
-    var input = document.getElementById('date-search-input');
-    var resultRoot = document.getElementById('date-search-results');
-    if (!input || !resultRoot) return;
-
-    var posts = [];
-
-    // 预加载全站文章数据
-    fetch('{{ site.baseurl }}/search.json')
-      .then(function (res) { return res.json(); })
-      .then(function (data) {
-        posts = data.map(function (p) {
-          return {
-            title: p.title,
-            url: p.url,
-            date: p.date,
-            content: p.content || ''
-          };
-        });
-      })
-      .catch(function (err) {
-        console.error('加载 search.json 失败', err);
-      });
-
-    input.addEventListener('input', function () {
-      var q = this.value.trim().toLowerCase();
-      if (!q) {
-        resultRoot.innerHTML = '';
-        return;
-      }
-
-      var filtered = posts.filter(function (p) {
-        var title = (p.title || '').toLowerCase();
-        var content = (p.content || '').toLowerCase();
-        return title.indexOf(q) !== -1 || content.indexOf(q) !== -1;
-      });
-
-      var byYear = {};
-      filtered.forEach(function (p) {
-        var year = (p.date || '').slice(0, 4) || '未知年份';
-        if (!byYear[year]) byYear[year] = [];
-        byYear[year].push(p);
-      });
-
-      var years = Object.keys(byYear).sort(function (a, b) {
-        return b.localeCompare(a);
-      });
-
-      var html = years.map(function (year) {
-        var items = byYear[year]
-          .sort(function (a, b) {
-            return (a.date || '').localeCompare(b.date || '');
-          })
-          .map(function (p) {
-            var dateStr = (p.date || '').slice(0, 10);
-            return (
-              '<li>' +
-                '<a href="{{ site.url }}{{ site.baseurl }}' + p.url + '">' +
-                  p.title +
-                '</a>' +
-                '<span style="color:#999;font-size:12px;margin-left:8px;">' +
-                  dateStr +
-                '</span>' +
-              '</li>'
-            );
-          })
-          .join('');
-
-        return (
-          '<details open>' +
-            '<summary style="cursor:pointer;font-weight:bold;margin:4px 0;">' +
-              year + ' <span style="color:#999;font-size:12px;">(' +
-              byYear[year].length +
-              ')</span>' +
-            '</summary>' +
-            '<ul style="list-style:none;padding-left:16px;margin:4px 0 8px;">' +
-              items +
-            '</ul>' +
-          '</details>'
-        );
-      }).join('');
-
-      if (!html) {
-        resultRoot.innerHTML = '<p style="color:#999;">没有匹配的文章</p>';
-      } else {
-        resultRoot.innerHTML = html;
-      }
-    });
-  })();
 </script>
  
 {% if site.posts.size == 0 %}
@@ -172,7 +63,7 @@ layout: default
       </div>
 
       <div class="entry">
-        {{ post.excerpt | truncate: 200 }}
+        {{ post.excerpt | strip_html | truncate: 200 }}
       </div>
 
       <a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>

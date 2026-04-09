@@ -21,6 +21,29 @@
     </nav>
   </div>
 
+  <div class="navlist" style="margin-top: 12px;">
+    <div style="font-weight: bold; margin-bottom: 6px;">归档</div>
+    <div style="max-height: 260px; overflow: auto;">
+      {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+      {% for year in posts_by_year %}
+        <details style="margin: 4px 0;">
+          <summary style="cursor: pointer;">
+            {{ year.name }} <span style="color:#999;font-size:12px;">({{ year.items | size }})</span>
+          </summary>
+          <ul style="list-style: none; padding-left: 12px; margin: 4px 0 8px;">
+            {% for post in year.items %}
+              <li style="margin: 2px 0;">
+                <a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}" style="font-size: 12px;">
+                  {{ post.date | date: "%m-%d" }} {{ post.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </details>
+      {% endfor %}
+    </div>
+  </div>
+
   <div class="wrapper-footer-desktop">
     <footer class="footer">
       {% include footer.html %}
